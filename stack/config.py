@@ -1,4 +1,4 @@
-"""STACK Configs."""
+"""TITILER_PD_STACK Configs."""
 
 from typing import Dict, List, Optional
 
@@ -43,4 +43,4 @@ class StackSettings(pydantic.BaseSettings):
         """model config"""
 
         env_file = "stack/.env"
-        env_prefix = "STACK_"
+        env_prefix = "TITILER_PDS_STACK_"
