@@ -5,8 +5,12 @@ import logging
 from brotli_asgi import BrotliMiddleware
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
+from starlette.requests import Request
+from starlette.responses import HTMLResponse
 from tilebench.middleware import VSIStatsMiddleware
 
+from titiler.application.custom import templates
+from titiler.application.middleware import CacheControlMiddleware, TotalTimeMiddleware
 from titiler.core.errors import DEFAULT_STATUS_CODES, add_exception_handlers
 from titiler.core.middleware import CacheControlMiddleware, TotalTimeMiddleware
 
@@ -68,3 +72,15 @@ app.include_router(
 def ping():
     """Health check."""
     return {"ping": "pong!"}
+
+
+if True:
+
+    @app.get("/", response_class=HTMLResponse, include_in_schema=False)
+    def landing(request: Request):
+        """TiTiler-pds Landing page"""
+        return templates.TemplateResponse(
+            name="index.html",
+            context={"request": request},
+            media_type="text/html",
+        )
