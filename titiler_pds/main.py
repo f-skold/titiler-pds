@@ -3,17 +3,15 @@
 import logging
 
 from brotli_asgi import BrotliMiddleware
+from fastapi import FastAPI
+from starlette.middleware.cors import CORSMiddleware
 from tilebench.middleware import VSIStatsMiddleware
 
-from titiler.errors import DEFAULT_STATUS_CODES, add_exception_handlers
-from titiler.middleware import CacheControlMiddleware, TotalTimeMiddleware
+from titiler.application.middleware import CacheControlMiddleware, TotalTimeMiddleware
+from titiler.core.errors import DEFAULT_STATUS_CODES, add_exception_handlers
 
 from .routes import landsat_collection2, naip, sentinel
 from .settings import api_config
-
-from fastapi import FastAPI
-
-from starlette.middleware.cors import CORSMiddleware
 
 # turn off or quiet logs
 logging.getLogger("botocore.credentials").disabled = True
