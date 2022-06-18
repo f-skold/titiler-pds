@@ -10,6 +10,8 @@ inst_reqs = [
     "tilebench",
     "rio-tiler-pds>=0.7.0,<1.0",
     "mangum>=0.10",
+    "brotli_asgi>=1.1.0",
+    "brotli>=1.0.7",
 ]
 
 extra_reqs = {

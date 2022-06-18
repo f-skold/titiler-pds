@@ -4,7 +4,7 @@ WORKDIR /tmp
 
 # Install dependencies
 # RUN pip install . rasterio==1.3a2 -t /var/task  --no-binary numpy,pydantic
-RUN pip install rasterio==1.3a2  titiler==0.7.0 rio-tiler-pds==0.7.0 mangum==0.10  -t /var/task  --no-binary numpy,pydantic
+RUN pip install rasterio==1.3a2  titiler==0.7.0 rio-tiler-pds==0.7.0 mangum==0.10 brotli==1.0.7 -t /var/task  --no-binary numpy,pydantic
 COPY setup.py setup.py
 COPY titiler_pds/ titiler_pds/
 RUN pip install . -t /var/task  --no-binary numpy,pydantic
