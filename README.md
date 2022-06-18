@@ -7,6 +7,12 @@ supported PDS:
 - Sentinel 2 (COGS)
 - NAIP
 
+## Run locally
+
+```
+    uvicorn titiler_pds.main:app
+```
+
 ## Deploy
 
 ```bash
