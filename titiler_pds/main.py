@@ -8,7 +8,7 @@ from tilebench.middleware import VSIStatsMiddleware
 from titiler.application.middleware import CacheControlMiddleware, TotalTimeMiddleware
 from titiler.core.errors import DEFAULT_STATUS_CODES, add_exception_handlers
 
-from .routes import landsat_collection2, naip, sentinel
+from .routes import landsat_collection2, naip, sentinel, skridskonet
 from .settings import api_config
 
 from fastapi import FastAPI
@@ -59,6 +59,10 @@ app.include_router(
 
 # NAIP tiler is a regular tiler with requester-pays set
 app.include_router(naip.mosaicjson.router, prefix="/mosaicjson/naip", tags=["NAIP"])
+
+app.include_router(
+    skridskonet.sn_scenes.router, prefix="/sn/sentinel", tags=["Sentinel 2 SN-COG"]
+)
 
 
 @app.get("/healtz", description="Health Check", tags=["Health Check"])
