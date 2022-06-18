@@ -1,10 +1,13 @@
 FROM public.ecr.aws/lambda/python:3.9
 
-COPY setup.py ${LAMBDA_TASK_ROOT}
-COPY titiler_pds/ ${LAMBDA_TASK_ROOT}/titiler_pds/
+WORKDIR /tmp
 
 # Install dependencies
-RUN pip install . rasterio==1.3a2 -t /var/task  --no-binary numpy,pydantic,botocore
+# RUN pip install . rasterio==1.3a2 -t /var/task  --no-binary numpy,pydantic
+RUN pip install rasterio==1.3a2  titiler==0.7.0 rio-tiler-pds==0.7.0 mangum==0.10  -t /var/task  --no-binary numpy,pydantic
+COPY setup.py setup.py
+COPY titiler_pds/ titiler_pds/
+RUN pip install . -t /var/task  --no-binary numpy,pydantic
 
 # Leave module precompiles for faster Lambda startup
 RUN cd /var/task && find . -type f -name '*.pyc' | while read f; do n=$(echo $f | sed 's/__pycache__\///' | sed 's/.cpython-[2-3][0-9]//'); cp $f $n; done;
