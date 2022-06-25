@@ -16,6 +16,7 @@ supported PDS:
 ## Deploy
 
 ```bash
+sudo npm -g install aws-cdk@1.160.0
 # Install AWS CDK requirements
 $ pip install -e .["deploy"]
 
