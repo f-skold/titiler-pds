@@ -76,8 +76,7 @@ class LambdaStack(core.Stack):
             self,
             f"{id}-endpoint",
             default_integration=apigw_integrations.HttpLambdaIntegration(
-                id=f"{id}-endpoint-lambda",
-                handler=lambda_function
+                id=f"{id}-endpoint-lambda", handler=lambda_function
             ),
         )
         core.CfnOutput(self, "Endpoint", value=api.url)
