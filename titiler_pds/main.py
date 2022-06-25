@@ -73,7 +73,9 @@ def ping():
     """Health check."""
     return {"ping": "pong!"}
 
+
 if True:
+
     @app.get("/", response_class=HTMLResponse, include_in_schema=False)
     def landing(request: Request):
         """TiTiler-pds Landing page"""
