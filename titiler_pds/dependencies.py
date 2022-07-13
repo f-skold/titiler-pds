@@ -45,6 +45,9 @@ class CustomPathParams:
         ):
             self.scene_metadata = l8_sceneid_parser(self.sceneid)
 
+    def __str__(self):
+        return self.sceneid
+
 
 def BandsParams(
     bands: str = Query(
