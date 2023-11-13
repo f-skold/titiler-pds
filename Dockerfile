@@ -9,12 +9,15 @@ RUN mkdir -p ${FUNCTION_DIR}
 
 # COPY setup.py ${LAMBDA_TASK_ROOT}
 COPY pyproject.toml ${LAMBDA_TASK_ROOT}
-COPY titiler_pds/ ${LAMBDA_TASK_ROOT}/titiler_pds/
+# COPY titiler_pds/ ${LAMBDA_TASK_ROOT}/titiler_pds/
 
 # pip3 install . rasterio==1.3a2 -t ${LAMBDA_TASK_ROOT}
 # Install dependencies
 RUN pip3 install . -t ${LAMBDA_TASK_ROOT}  --no-binary numpy,pydantic && \
     echo "Leave module precompiles for faster Lambda startup"
+
+# RUN pip3 install tilebench -t ${LAMBDA_TASK_ROOT}
+# RUN pip3 install rio_tiler_pds -t ${LAMBDA_TASK_ROOT}
 
 RUN cd ${LAMBDA_TASK_ROOT} && find . -type f -name '*.pyc' | \
     while read f; do n=$(echo $f | sed 's/__pycache__\///' | sed 's/.cpython-[2-3][0-9]//'); cp $f $n; done && \
@@ -25,13 +28,15 @@ RUN cd ${LAMBDA_TASK_ROOT} && find . -type f -name '*.pyc' | \
     rm -rdf ${LAMBDA_TASK_ROOT}/numpy/doc/ && \
     rm -rdf ${LAMBDA_TASK_ROOT}/stack
 
-FROM python:3.11-slim-bookworm
+COPY titiler_pds/ ${LAMBDA_TASK_ROOT}/titiler_pds/
 
-# Include global arg in this stage of the build
-ARG FUNCTION_DIR
+# FROM python:3.11-slim-bookworm
 
-RUN mkdir -p ${FUNCTION_DIR}
-COPY --from=build-image ${FUNCTION_DIR} ${FUNCTION_DIR}
+# # Include global arg in this stage of the build
+# ARG FUNCTION_DIR
+
+# RUN mkdir -p ${FUNCTION_DIR}
+# COPY --from=build-image ${FUNCTION_DIR} ${FUNCTION_DIR}
 
 # Set runtime interface client as default command for the container runtime
 ENTRYPOINT [ "/usr/local/bin/python", "-m", "awslambdaric" ]

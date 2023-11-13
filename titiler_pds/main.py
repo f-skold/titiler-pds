@@ -7,8 +7,8 @@ from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 from tilebench.middleware import VSIStatsMiddleware
 
-from titiler.application.middleware import CacheControlMiddleware, TotalTimeMiddleware
 from titiler.core.errors import DEFAULT_STATUS_CODES, add_exception_handlers
+from titiler.core.middleware import CacheControlMiddleware, TotalTimeMiddleware
 
 from .routes import landsat_collection2, naip, sentinel
 from .settings import api_config

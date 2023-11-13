@@ -22,7 +22,13 @@ classifiers = [
 ]
 version="0.1.0"
 dependencies = [
+    "awslambdaric",
+    "brotli-asgi",
+    "mangum",
+    "pydantic-settings",
     "rasterio",
+    "rio_tiler_pds",
+    "tilebench",
     "titiler.core==0.15.5",
     "titiler.extensions==0.15.5",
     "titiler.mosaic==0.15.5",

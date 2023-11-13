@@ -1,9 +1,9 @@
 """app settings"""
 
-import pydantic
+import pydantic_settings
 
 
-class MosaicSettings(pydantic.BaseSettings):
+class MosaicSettings(pydantic_settings.BaseSettings):
     """Application settings"""
 
     backend: str
@@ -18,7 +18,7 @@ class MosaicSettings(pydantic.BaseSettings):
         env_prefix = "MOSAIC_"
 
 
-class ApiSettings(pydantic.BaseSettings):
+class ApiSettings(pydantic_settings.BaseSettings):
     """FASTAPI application settings."""
 
     cors_origins: str = "*"
