@@ -1,5 +1,6 @@
 """app settings"""
 
+import pydantic
 import pydantic_settings
 
 
@@ -23,7 +24,8 @@ class ApiSettings(pydantic_settings.BaseSettings):
 
     cors_origins: str = "*"
     cachecontrol: str = "public, max-age=3600"
-    debug: bool = False
+    # debug: bool = False
+    debug: bool = True
     vsi_stats: bool = False
 
     @pydantic.validator("cors_origins")

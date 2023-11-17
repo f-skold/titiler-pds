@@ -19,3 +19,9 @@ $ AWS_DEFAULT_REGION=us-west-2 AWS_REGION=us-west-2 cdk bootstrap
 # Deploy app
 $ AWS_DEFAULT_REGION=us-west-2 AWS_REGION=us-west-2 cdk deploy
 ```
+
+## Testing it locally
+
+### Using empty event (catches early errors)
+
+   curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{}'

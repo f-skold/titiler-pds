@@ -16,7 +16,8 @@ from .settings import api_config
 # turn off or quiet logs
 logging.getLogger("botocore.credentials").disabled = True
 logging.getLogger("botocore.utils").disabled = True
-logging.getLogger("rio-tiler").setLevel(logging.ERROR)
+# logging.getLogger("rio-tiler").setLevel(logging.ERROR)
+logging.getLogger("rio-tiler").setLevel(logging.DEBUG)
 
 app = FastAPI(title="titiler-pds", version="0.1.0")
 

@@ -26,13 +26,14 @@ dependencies = [
     "brotli-asgi",
     "mangum",
     "pydantic-settings",
+    "pydantic",
     "rasterio",
     "rio_tiler_pds",
     "tilebench",
+    "titiler.application==0.15.5",
     "titiler.core==0.15.5",
     "titiler.extensions==0.15.5",
     "titiler.mosaic==0.15.5",
-    "titiler.application==0.15.5",
 ]
 
 [project.optional-dependencies]
