@@ -3,9 +3,10 @@
 from typing import Dict, List, Optional
 
 import pydantic
+import pydantic_settings
 
 
-class StackSettings(pydantic.BaseSettings):
+class StackSettings(pydantic_settings.BaseSettings):
     """Application settings"""
 
     name: str = "titiler-pds"

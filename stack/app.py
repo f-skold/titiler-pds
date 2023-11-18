@@ -3,11 +3,11 @@
 import os
 from typing import Any, List, Optional
 
+# from aws_cdk import aws_apigatewayv2_integrations_alpha as apigw_integrations
+# from aws_cdk import aws_apigatewayv2_integrations_alpha as apigw_integrations
 from aws_cdk import aws_apigatewayv2 as apigw
-# from aws_cdk import aws_apigatewayv2_integrations_alpha as apigw_integrations
-# from aws_cdk import aws_apigatewayv2_integrations_alpha as apigw_integrations
 from aws_cdk import aws_iam as iam
-from aws_cdk import aws_lambda, core
+from aws_cdk import aws_lambda
 from config import StackSettings
 
 settings = StackSettings()
