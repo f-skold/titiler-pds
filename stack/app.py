@@ -4,16 +4,17 @@ import os
 from typing import Any, List, Optional
 
 import aws_cdk as core
-from aws_cdk import aws_apigatewayv2_integrations_alpha as apigw_integrations
+
 # from aws_cdk import aws_apigatewayv2_integrations_alpha as apigw_integrations
 from aws_cdk import aws_apigatewayv2 as apigw
 from aws_cdk import aws_apigatewayv2_alpha as apigw_alpha
+from aws_cdk import aws_apigatewayv2_integrations_alpha as apigw_integrations
 from aws_cdk import aws_iam as iam
 from aws_cdk import aws_lambda
-#from aws_cdk import App, CfnOutput, Duration, Stack, Tag
+
+# from aws_cdk import App, CfnOutput, Duration, Stack, Tag
 from config import StackSettings
 from constructs import Construct
-
 
 settings = StackSettings()
 
