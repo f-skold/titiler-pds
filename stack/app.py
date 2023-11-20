@@ -3,12 +3,17 @@
 import os
 from typing import Any, List, Optional
 
-# from aws_cdk import aws_apigatewayv2_integrations_alpha as apigw_integrations
+import aws_cdk as core
+from aws_cdk import aws_apigatewayv2_integrations_alpha as apigw_integrations
 # from aws_cdk import aws_apigatewayv2_integrations_alpha as apigw_integrations
 from aws_cdk import aws_apigatewayv2 as apigw
+from aws_cdk import aws_apigatewayv2_alpha as apigw_alpha
 from aws_cdk import aws_iam as iam
 from aws_cdk import aws_lambda
+#from aws_cdk import App, CfnOutput, Duration, Stack, Tag
 from config import StackSettings
+from constructs import Construct
+
 
 settings = StackSettings()
 
@@ -32,7 +37,7 @@ class LambdaStack(core.Stack):
 
     def __init__(
         self,
-        scope: core.Construct,
+        scope: Construct,
         id: str,
         memory: int = 1024,
         timeout: int = 30,
@@ -73,7 +78,7 @@ class LambdaStack(core.Stack):
         for perm in permissions:
             lambda_function.add_to_role_policy(perm)
 
-        api = apigw.HttpApi(
+        api = apigw_alpha.HttpApi(
             self,
             f"{id}-endpoint",
             default_integration=apigw_integrations.HttpLambdaIntegration(

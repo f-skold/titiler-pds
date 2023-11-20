@@ -44,4 +44,4 @@ class StackSettings(pydantic_settings.BaseSettings):
         """model config"""
 
         env_file = "stack/.env"
-        env_prefix = "STACK2_"
+        env_prefix = "STACK_"
