@@ -25,6 +25,7 @@ class StackSettings(pydantic_settings.BaseSettings):
         "sentinel-cogs",
         "naip-visualization",
         "naip-analytic",
+        "requester-pays-sn-sat",
     ]
 
     timeout: int = 30
