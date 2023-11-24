@@ -1,5 +1,6 @@
 """Skridskonet Sentinel endpoint."""
 
+from fastapi import APIRouter
 from rio_tiler_pds.sentinel.aws import S2COGReader
 
 from titiler.core.dependencies import BandsExprParams
@@ -9,8 +10,6 @@ from titiler.mosaic.factory import MosaicTilerFactory
 
 from ..dependencies import CustomPathParams, MosaicParams
 
-# from fastapi import APIRouter
-
 route_class = apiroute_factory({"AWS_NO_SIGN_REQUEST": "YES"})
 
 
@@ -18,7 +17,7 @@ sn_scenes = MultiBandTilerFactory(
     reader=S2COGReader,
     path_dependency=CustomPathParams,
     router_prefix="sn/sentinel",
-    # router=APIRouter(route_class=route_class),
+    router=APIRouter(route_class=route_class),
 )
 
 if False:
