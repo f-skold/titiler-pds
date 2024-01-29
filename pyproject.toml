@@ -21,14 +21,19 @@ classifiers = [
     "Topic :: Scientific/Engineering :: GIS",
 ]
 version="0.1.0"
+# "rio_tiler_pds=="0.10.1a1",
+# "rio_tiler_pds @ file://{$PROJECT_ROOT}/rio_tiler_pds-0.10.1a1-py3-none-any.whl",
 dependencies = [
+    "rio_tiler @ http://192.168.10.216:7070/testuser/dev/+f/506/173569931d629/rio_tiler-6.2.7a2-py3-none-any.whl",
+    "rio_tiler_pds @ http://192.168.10.216:7070/testuser/dev/+f/992/8afff59546d85/rio_tiler_pds-0.10.1a2-py3-none-any.whl#sha256=9928afff59546d854cfa96347344dc3e26e84abba020fd15eb0a63d3a1a26430",
     "awslambdaric",
     "brotli-asgi",
     "mangum",
     "pydantic-settings",
     "pydantic",
     "rasterio",
-    "rio_tiler_pds",
+    # "rio_tiler==6.2.7a1",
+    # "rio_tiler_pds==0.10.1a2",
     "tilebench",
     "titiler.application==0.15.5",
     "titiler.core==0.15.5",
@@ -50,6 +55,9 @@ test = [
     "pytest", "pytest-cov", "pytest-asyncio", "requests"
 ]
 
+
+[tool.setuptools.packages]
+find = {namespaces = false}  # Disable implicit namespaces
 
 [tool.coverage.run]
 branch = true
