@@ -9,6 +9,7 @@ from titiler.core.routing import apiroute_factory
 from titiler.mosaic.factory import MosaicTilerFactory
 
 from ..dependencies import CustomPathParams, MosaicParams
+from ..dependencies_sn import get_reader_params
 
 route_class = apiroute_factory({"AWS_NO_SIGN_REQUEST": "YES"})
 
@@ -16,6 +17,7 @@ route_class = apiroute_factory({"AWS_NO_SIGN_REQUEST": "YES"})
 sn_scenes = MultiBandTilerFactory(
     reader=S2COGReader,
     path_dependency=CustomPathParams,
+    reader_dependency=get_reader_params,
     router_prefix="sn/sentinel",
     router=APIRouter(route_class=route_class),
 )
