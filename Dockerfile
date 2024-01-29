@@ -6,14 +6,23 @@ ARG FUNCTION_DIR
 ARG LAMBDA_TASK_ROOT
 WORKDIR ${FUNCTION_DIR}
 RUN mkdir -p ${FUNCTION_DIR}
+# ENV PIP_INDEX_URL=http://localhost:7070/root/pypi/+simple/
+# ENV PIP_INDEX_URL=https://pypi.org/simple
+# ENV PIP_EXTRA_INDEX_URL=http://localhost:7070/testuser/dev/
 
 # COPY setup.py ${LAMBDA_TASK_ROOT}
-COPY pyproject.toml ${LAMBDA_TASK_ROOT}
+COPY pyproject.toml README.md LICENSE ${LAMBDA_TASK_ROOT}
 # COPY titiler_pds/ ${LAMBDA_TASK_ROOT}/titiler_pds/
 
+# COPY rio_tiler-6.2.7a1-py3-none-any.whl rio_tiler_pds-0.10.1a2-py3-none-any.whl ${LAMBDA_TASK_ROOT}
 # pip3 install . rasterio==1.3a2 -t ${LAMBDA_TASK_ROOT}
 # Install dependencies
-RUN pip3 install . -t ${LAMBDA_TASK_ROOT}  --no-binary numpy,pydantic && \
+RUN echo FALSE pip3 install -t ${LAMBDA_TASK_ROOT} rio_tiler-6.2.7a1-py3-none-any.whl   rio_tiler_pds-0.10.1a2-py3-none-any.whl && \
+    echo "=== rio_tiler-6.2.7a1-py3-none-any.whl DONE" && \
+    echo pip3 install -t ${LAMBDA_TASK_ROOT} rio_tiler_pds-0.10.1a2-py3-none-any.whl && \
+    echo "=== rio_tiler_pds-0.10.1a2-py3-none-any.whl DONE"
+
+RUN pip3 install -t ${LAMBDA_TASK_ROOT} . --no-binary numpy,pydantic && \
     echo "Leave module precompiles for faster Lambda startup"
 
 # RUN pip3 install tilebench -t ${LAMBDA_TASK_ROOT}
@@ -29,6 +38,14 @@ RUN cd ${LAMBDA_TASK_ROOT} && find . -type f -name '*.pyc' | \
     rm -rdf ${LAMBDA_TASK_ROOT}/stack
 
 COPY titiler_pds/ ${LAMBDA_TASK_ROOT}/titiler_pds/
+
+RUN pip install "uvicorn[standard]"
+COPY .env ${LAMBDA_TASK_ROOT}/
+
+# ENV AWS_PROFILE=default
+ENV AWS_REQUEST_PAYER=requester
+ENV AWS_DEFAULT_REGION=eu-north-1
+ENV AWS_REGION=eu-north-1
 
 # FROM python:3.11-slim-bookworm
 
