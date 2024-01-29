@@ -2,8 +2,7 @@
     "version": "2.0",
     "routeKey": "$default",
     "rawPath": "/sn/sentinel/info",
-    "rawQueryString": "sceneid=S2A_MSIL2A_20220210T102151_N0400_R065_T33VWF_20220210T141713",
-    "temp": "info?sceneid=S2A_MSIL2A_20220210T102151_N0400_R065_T33VWF_20220210T141713",
+    "rawQueryString": "sceneid=S2A_33VXE_20230605_0_L2",
     "cookies": [
       "cookie1",
       "cookie2"
@@ -13,8 +12,7 @@
       "header2": "value1,value2"
     },
     "queryStringParameters": {
-      "sceneid": "S2A_MSIL2A_20220210T102151_N0400_R065_T33VWF_20220210T141713",
-      "parameter2": "value"
+      "sceneid": "S2A_33VXE_20230605_0_L2"
     },
     "requestContext": {
       "accountId": "123456789012",
