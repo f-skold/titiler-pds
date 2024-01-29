@@ -13,14 +13,25 @@ from titiler.core.dependencies import DefaultDependency
 from .settings import mosaic_config
 
 
-@dataclass
-class CustomPathParams:
+@dataclass(kw_only=True)
+class CustomPathParams(str):
     """Create dataset path from args"""
 
     sceneid: str = Query(..., description="Sceneid.")
     scene_metadata: Dict = field(init=False)
 
-    def __post_init__(self):
+    def __str__(self):
+        """As string"""
+        return str(self.sceneid)
+
+    # def __post_init__(self):
+
+    def __new__(cls, sceneid):
+        """Constructor calling parent (str) with sceneid"""
+        o = super(CustomPathParams, cls).__new__(cls, sceneid)
+        o.sceneid = sceneid
+
+        self = o
         """Define dataset URL."""
         self.url = self.sceneid
         if re.match(
@@ -44,6 +55,7 @@ class CustomPathParams:
             self.sceneid,
         ):
             self.scene_metadata = l8_sceneid_parser(self.sceneid)
+        return o
 
 
 def BandsParams(
